@@ -21,8 +21,8 @@ spec:
 
       containers:
       - name: mytodo-app
-
-        image: mx-queretaro-1.ocir.io/axyjwyhvlyvr/mytodo:latest
+        # OCI DevOps reemplazará esto automáticamente por la imagen nueva
+        image: ${todolist_image_artifact}
 
         ports:
         - containerPort: 8080

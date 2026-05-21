@@ -34,7 +34,7 @@ function LoginView({ onLogin, onGoToRegister }) {
               <h2 class="brand-text">OCTO</h2>
               <h2 class="brand-text2">Task</h2>
             </div>
-            <p class="brand-subtitle">More arms for your tasks</p>
+            <p class="brand-subtitle">CI/CD completed</p>
           </div>
           
           <div class="inputGroup">
