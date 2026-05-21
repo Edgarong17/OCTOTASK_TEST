@@ -23,6 +23,7 @@ spec:
       - name: mytodo-app
         # OCI DevOps reemplazará esto automáticamente por la imagen nueva
         image: ${todolist_image_artifact}
+        imagePullPolicy: Always
 
         ports:
         - containerPort: 8080
