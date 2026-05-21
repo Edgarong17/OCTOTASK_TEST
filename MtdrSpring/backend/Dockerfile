@@ -16,7 +16,7 @@ COPY src/ src/
 
 RUN ./mvnw -B -DskipTests clean package spring-boot:repackage
 
-FROM public.ecr.aws/amazoncorretto/amazoncorretto:17-alpine
+FROM ghcr.io/graalvm/jdk-community:17
 #FROM eclipse-temurin:17-jre-jammy # Usar si el limit rate de Oracle no es un porblema
 
 WORKDIR /app
