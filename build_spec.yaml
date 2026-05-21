@@ -22,7 +22,7 @@ steps:
   - type: Command
     name: "Docker Login"
     command: |
-      echo "${DOCKER_HUB_TOKEN}" | docker login --username "${DOCKER_HUB_USER}" --password-stdin
+      echo "${DOCKER_HUB_TOKEN}" | docker login --username "${DOCKER_HUB_USER}" --password-stdin docker.io
       
   - type: Command
     name: "Generar Tag"
