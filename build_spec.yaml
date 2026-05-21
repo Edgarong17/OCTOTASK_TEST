@@ -35,8 +35,9 @@ steps:
   - type: Command
     name: "Login a OCIR"
     command: |
-      echo $OCIR_AUTH_TOKEN | docker login ${REGION}.ocir.io \
-      -u "$axyjwyhvlyvr/A01644488@tec.mx" --password-stdin
+      echo "${OCI_AUTH_TOKEN}" | docker login mx-queretaro-1.ocir.io \
+      -u "${OCI_NAMESPACE}/${OCI_USERNAME}" \
+      --password-stdin
 
   - type: Command
     name: "Build Docker Image"
