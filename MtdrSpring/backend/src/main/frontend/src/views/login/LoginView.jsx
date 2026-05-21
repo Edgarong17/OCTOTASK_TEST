@@ -32,7 +32,7 @@ function LoginView({ onLogin, onGoToRegister }) {
             <div class="brand-title">
               <img src={logo} alt="OctoTask" class="brand-icon" />
               <h2 class="brand-text">OCTO </h2>
-              <h2 class="brand-text2">Task CI</h2>
+              <h2 class="brand-text2">Task</h2>
             </div>
             <p class="brand-subtitle">More arms for your tasks</p>
           </div>
