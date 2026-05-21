@@ -21,9 +21,13 @@ FROM public.ecr.aws/amazoncorretto/amazoncorretto:17-alpine
 
 WORKDIR /app
 
-RUN useradd --system --uid 10001 appuser \
+RUN adduser --system --uid 10001 appuser \
     && mkdir -p /mtdrworkshop/creds \
     && chown -R appuser /app /mtdrworkshop
+
+#RUN useradd --system --uid 10001 appuser \
+#    && mkdir -p /mtdrworkshop/creds \
+#    && chown -R appuser /app /mtdrworkshop
 
 COPY --from=builder /workspace/target/MyTodoList-0.0.1-SNAPSHOT.jar /app/MyTodoList.jar
 
