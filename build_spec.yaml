@@ -33,12 +33,6 @@ steps:
       echo "Token obtenido correctamente"
 
   - type: Command
-    name: "Debug Secrets"
-    command: |
-      echo "Namespace: $OCI_NAMESPACE"
-      echo "Username: $OCI_USERNAME"
-
-  - type: Command
     name: "Login a OCIR"
     command: |
       echo "${OCI_AUTH_TOKEN}" | docker login mx-queretaro-1.ocir.io \
