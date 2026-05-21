@@ -10,19 +10,17 @@ env:
     REPO: "mytodo"
   exportedVariables:
     - IMAGE_TAG
-
-# CORREGIDO AQUÍ: Estructura de lista oficial para OCI Vault
-vaultSecrets:
-  - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa36kllm7zqbnyygobofzpkfbsqmsvdeom5rlqi5uqh2fa"
-    name: "OCI_USERNAME"
-  - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa2anc7lzvhtj67agd3qznjmsdkhjwvumh3tg5bokivupq"
-    name: "OCI_NAMESPACE"
-  - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqampe7bzmli2p5a4meoxyl2bhk2ivzbkxb3af627dozaqq"
-    name: "OCI_AUTH_TOKEN"
-  - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqahslvasz33o5lopjf5yjrsqvxmhkddevzjdkst4njlqgq"
-    name: "DOCKER_HUB_TOKEN"
-  - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa6rwbcoilymgliccj3mcbfcu6uyczbkx74ibw5ypqwknq"
-    name: "DOCKER_HUB_USER"
+  secrets:
+    - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa36kllm7zqbnyygobofzpkfbsqmsvdeom5rlqi5uqh2fa"
+      name: "OCI_USERNAME"
+    - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa2anc7lzvhtj67agd3qznjmsdkhjwvumh3tg5bokivupq"
+      name: "OCI_NAMESPACE"
+    - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqampe7bzmli2p5a4meoxyl2bhk2ivzbkxb3af627dozaqq"
+      name: "OCI_AUTH_TOKEN"
+    - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqahslvasz33o5lopjf5yjrsqvxmhkddevzjdkst4njlqgq"
+      name: "DOCKER_HUB_TOKEN"
+    - secretId: "ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa6rwbcoilymgliccj3mcbfcu6uyczbkx74ibw5ypqwknq"
+      name: "DOCKER_HUB_USER"
 
 steps:
   - type: Command
