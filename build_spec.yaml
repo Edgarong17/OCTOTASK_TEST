@@ -1,37 +1,58 @@
 version: 0.1
 component: build
-timeoutInSeconds: 6000
+timeoutInSeconds: 1200
 shell: bash
 
 env:
   variables:
-    # Nombre que tendrá tu aplicación en el registro
-    APP_NAME: "todolist-springboot"
+    APP_NAME: "Octotask"
+    REGION: "mx-queretaro-1"
+    TENANCY: "axyjwyhvlyvr"
+    REPO: "mytodo"
   exportedVariables:
     - IMAGE_TAG
 
 steps:
   - type: Command
-    name: "Generar Tag Único"
+    name: "Generar Tag"
     command: |
-      # Extraemos los primeros 7 caracteres del ID de OCI para usarlo como versión
+      set -e
       export IMAGE_TAG=${OCI_BUILD_RUN_ID:0:7}
-      echo "El tag asignado para esta compilación es: $IMAGE_TAG"
+      echo "Tag generado: $IMAGE_TAG"
 
   - type: Command
-    name: "Construir Imagen Docker Completa"
+    name: "Obtener token desde Vault"
     command: |
-      echo "Entrando al directorio del backend..."
+      echo "Obteniendo token desde Vault..."
+      
+      OCIR_AUTH_TOKEN=$(oci secrets secret-bundle get \
+        --secret-id ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqampe7bzmli2p5a4meoxyl2bhk2ivzbkxb3af627dozaqq \
+        --query "data.\"secret-bundle-content\".content" \
+        --raw-output | base64 --decode)
+      
+      echo "Token obtenido correctamente"
+
+  - type: Command
+    name: "Login a OCIR"
+    command: |
+      echo $OCIR_AUTH_TOKEN | docker login ${REGION}.ocir.io \
+      -u "$axyjwyhvlyvr/A01644488@tec.mx" --password-stdin
+
+  - type: Command
+    name: "Build Docker Image"
+    command: |
       cd backend
-      
-      echo "Validando archivos antes de compilar..."
-      ls -la
-      
-      echo "Iniciando Docker Build (Compilación de React + empaquetado Spring Boot)..."
       docker build -t ${APP_NAME}:${IMAGE_TAG} .
-      echo "Imagen Docker construida exitosamente."
+
+  - type: Command
+    name: "Tag & Push"
+    command: |
+      docker tag ${APP_NAME}:${IMAGE_TAG} \
+      ${REGION}.ocir.io/${TENANCY}/${REPO}:${IMAGE_TAG}
+
+      docker push ${REGION}.ocir.io/${TENANCY}/${REPO}:${IMAGE_TAG}
 
 outputArtifacts:
   - name: todolist_image_artifact
     type: DOCKER_IMAGE
-    location: ${APP_NAME}:${IMAGE_TAG}
+    location: ${REGION}.ocir.io/${TENANCY}/${REPO}:${IMAGE_TAG}
