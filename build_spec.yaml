@@ -35,16 +35,20 @@ steps:
     command: |
       cd MtdrSpring/backend
       docker build -t ${APP_NAME}:${IMAGE_TAG} .
-
   - type: Command
     name: "Tag & Push"
     command: |
       docker tag ${APP_NAME}:${IMAGE_TAG} \
         ${REGION}.ocir.io/${OCI_NAMESPACE}/${REPO}:${IMAGE_TAG}
 
+      docker tag ${APP_NAME}:${IMAGE_TAG} \
+        ${REGION}.ocir.io/${OCI_NAMESPACE}/${REPO}:latest
+
       docker push ${REGION}.ocir.io/${OCI_NAMESPACE}/${REPO}:${IMAGE_TAG}
+      docker push ${REGION}.ocir.io/${OCI_NAMESPACE}/${REPO}:latest
+    
 
 outputArtifacts:
   - name: todolist_image_artifact
     type: DOCKER_IMAGE
-    location: ${REGION}.ocir.io/${OCI_NAMESPACE}/${REPO}:${IMAGE_TAG}
+    location: mx-queretaro-1.ocir.io/axyjwyhvlyvr/mytodo:latest
