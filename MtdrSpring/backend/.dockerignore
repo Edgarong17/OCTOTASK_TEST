@@ -1,0 +1,23 @@
+# Secrets / local config
+.env
+.env.*
+!.env.example
+wallet/
+
+# Build outputs
+target/
+src/main/frontend/node_modules/
+src/main/frontend/build/
+
+# Logs
+*.log
+*.gz
+logs.log.*
+
+# Generated deploy files
+todolistapp-springboot-*.yaml
+
+# Git / IDE
+.git/
+.idea/
+*.iml

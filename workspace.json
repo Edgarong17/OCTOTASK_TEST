@@ -1,0 +1,951 @@
+{
+  "configuration" : { },
+  "description" : "Task management platform for the Oracle MTDR program.",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedDate" : "2026-05-14T22:39:20Z",
+  "model" : {
+    "deploymentNodes" : [ {
+      "children" : [ {
+        "containerInstances" : [ {
+          "containerId" : "7",
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Production",
+          "id" : "53",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "a9c7d3fd-68bd-4c9a-96ab-94d43fa80f68.region.pod.apiInstance"
+          },
+          "relationships" : [ {
+            "description" : "Reads from and writes to",
+            "destinationId" : "55",
+            "id" : "56",
+            "linkedRelationshipId" : "27",
+            "sourceId" : "53",
+            "technology" : "JDBC over mTLS (Oracle Wallet)"
+          } ],
+          "tags" : "Container Instance"
+        } ],
+        "description" : "Kubernetes 1.35.2 · 2 replicas · :8080",
+        "environment" : "Production",
+        "id" : "52",
+        "instances" : "2",
+        "name" : "OKE Pod (octotask-api)",
+        "properties" : {
+          "structurizr.dsl.identifier" : "a9c7d3fd-68bd-4c9a-96ab-94d43fa80f68.region.pod"
+        },
+        "tags" : "Element,Deployment Node,"
+      }, {
+        "environment" : "Production",
+        "id" : "54",
+        "instances" : "1",
+        "name" : "Autonomous Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "a9c7d3fd-68bd-4c9a-96ab-94d43fa80f68.region.adbNode"
+        },
+        "softwareSystemInstances" : [ {
+          "deploymentGroups" : [ "Default" ],
+          "environment" : "Production",
+          "id" : "55",
+          "instanceId" : 1,
+          "properties" : {
+            "structurizr.dsl.identifier" : "a9c7d3fd-68bd-4c9a-96ab-94d43fa80f68.region.adbNode.adbInstance"
+          },
+          "softwareSystemId" : "18",
+          "tags" : "Software System Instance"
+        } ],
+        "tags" : "Element,Deployment Node",
+        "technology" : "Oracle ADB"
+      } ],
+      "environment" : "Production",
+      "id" : "50",
+      "infrastructureNodes" : [ {
+        "environment" : "Production",
+        "id" : "51",
+        "name" : "Public Load Balancer",
+        "properties" : {
+          "structurizr.dsl.identifier" : "a9c7d3fd-68bd-4c9a-96ab-94d43fa80f68.region.lb"
+        },
+        "relationships" : [ {
+          "description" : "Forwards to",
+          "destinationId" : "53",
+          "id" : "57",
+          "sourceId" : "51",
+          "tags" : "Relationship",
+          "technology" : "HTTP / 8080"
+        } ],
+        "tags" : "Element,Infrastructure Node",
+        "technology" : "OCI LB"
+      } ],
+      "instances" : "1",
+      "name" : "OCI Region — mx-queretaro-1",
+      "properties" : {
+        "structurizr.dsl.identifier" : "a9c7d3fd-68bd-4c9a-96ab-94d43fa80f68.region"
+      },
+      "tags" : "Element,Deployment Node",
+      "technology" : "OCI"
+    } ],
+    "people" : [ {
+      "description" : "Creates and assigns tasks; reviews team analytics.",
+      "id" : "1",
+      "name" : "Project Manager",
+      "properties" : {
+        "structurizr.dsl.identifier" : "pm"
+      },
+      "relationships" : [ {
+        "description" : "Manages tasks and reviews analytics in",
+        "destinationId" : "6",
+        "id" : "22",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Manages tasks and reviews analytics in",
+        "destinationId" : "5",
+        "id" : "23",
+        "linkedRelationshipId" : "22",
+        "sourceId" : "1"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "description" : "Updates own task status; views personal performance.",
+      "id" : "2",
+      "name" : "Developer",
+      "properties" : {
+        "structurizr.dsl.identifier" : "dev"
+      },
+      "relationships" : [ {
+        "description" : "Updates task status in",
+        "destinationId" : "6",
+        "id" : "24",
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Updates task status in",
+        "destinationId" : "5",
+        "id" : "25",
+        "linkedRelationshipId" : "24",
+        "sourceId" : "2"
+      }, {
+        "description" : "Pushes code to",
+        "destinationId" : "19",
+        "id" : "44",
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "description" : "Maintains the build pipeline and OKE infrastructure.",
+      "id" : "3",
+      "name" : "DevOps Engineer",
+      "properties" : {
+        "structurizr.dsl.identifier" : "devops"
+      },
+      "relationships" : [ {
+        "description" : "Reviews PRs in",
+        "destinationId" : "19",
+        "id" : "45",
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Operates",
+        "destinationId" : "20",
+        "id" : "46",
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person,External"
+    }, {
+      "description" : "Reviews sprint progress and code on behalf of Oracle.",
+      "id" : "4",
+      "name" : "MTDR Coach",
+      "properties" : {
+        "structurizr.dsl.identifier" : "coach"
+      },
+      "relationships" : [ {
+        "description" : "Reviews sprint progress via",
+        "destinationId" : "19",
+        "id" : "47",
+        "sourceId" : "4",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person,External"
+    } ],
+    "softwareSystems" : [ {
+      "containers" : [ {
+        "description" : "Single-page UI; bundled into the API JAR and served as static assets.",
+        "documentation" : { },
+        "id" : "6",
+        "name" : "Web Portal",
+        "properties" : {
+          "structurizr.dsl.identifier" : "octotask.spa"
+        },
+        "relationships" : [ {
+          "description" : "Calls REST endpoints on",
+          "destinationId" : "7",
+          "id" : "26",
+          "sourceId" : "6",
+          "tags" : "Relationship",
+          "technology" : "JSON / HTTPS"
+        }, {
+          "description" : "Auth + user APIs",
+          "destinationId" : "8",
+          "id" : "29",
+          "sourceId" : "6",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Task APIs",
+          "destinationId" : "9",
+          "id" : "30",
+          "sourceId" : "6",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Statistics APIs",
+          "destinationId" : "10",
+          "id" : "31",
+          "sourceId" : "6",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Filter APIs",
+          "destinationId" : "11",
+          "id" : "32",
+          "sourceId" : "6",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Health probe",
+          "destinationId" : "12",
+          "id" : "33",
+          "sourceId" : "6",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        } ],
+        "tags" : "Element,Container,WebApp",
+        "technology" : "React + Vite + TypeScript"
+      }, {
+        "components" : [ {
+          "description" : "User CRUD and authentication endpoints.",
+          "documentation" : { },
+          "id" : "8",
+          "name" : "UserController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.userCtl"
+          },
+          "relationships" : [ {
+            "destinationId" : "13",
+            "id" : "34",
+            "sourceId" : "8",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring MVC"
+        }, {
+          "description" : "Task CRUD, assignment and status endpoints.",
+          "documentation" : { },
+          "id" : "9",
+          "name" : "TaskController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.taskCtl"
+          },
+          "relationships" : [ {
+            "destinationId" : "14",
+            "id" : "35",
+            "sourceId" : "9",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring MVC"
+        }, {
+          "description" : "Team and per-user statistics endpoints.",
+          "documentation" : { },
+          "id" : "10",
+          "name" : "StadisticsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.statsCtl"
+          },
+          "relationships" : [ {
+            "destinationId" : "15",
+            "id" : "36",
+            "sourceId" : "10",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring MVC"
+        }, {
+          "description" : "Endpoints for filtered task lists.",
+          "documentation" : { },
+          "id" : "11",
+          "name" : "FilterController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.filterCtl"
+          },
+          "relationships" : [ {
+            "destinationId" : "16",
+            "id" : "37",
+            "sourceId" : "11",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring MVC"
+        }, {
+          "description" : "Database liveness/health probe.",
+          "documentation" : { },
+          "id" : "12",
+          "name" : "DatabaseController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.dbCtl"
+          },
+          "relationships" : [ {
+            "description" : "Pings",
+            "destinationId" : "17",
+            "id" : "42",
+            "sourceId" : "12",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring MVC"
+        }, {
+          "description" : "User lifecycle and credential checks.",
+          "documentation" : { },
+          "id" : "13",
+          "name" : "UserService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.userSvc"
+          },
+          "relationships" : [ {
+            "destinationId" : "17",
+            "id" : "38",
+            "sourceId" : "13",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring Service"
+        }, {
+          "description" : "Task state machine and assignment rules.",
+          "documentation" : { },
+          "id" : "14",
+          "name" : "TaskService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.taskSvc"
+          },
+          "relationships" : [ {
+            "destinationId" : "17",
+            "id" : "39",
+            "sourceId" : "14",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring Service"
+        }, {
+          "description" : "Aggregates tasks per team/user for charts.",
+          "documentation" : { },
+          "id" : "15",
+          "name" : "StadisticsService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.statsSvc"
+          },
+          "relationships" : [ {
+            "destinationId" : "17",
+            "id" : "40",
+            "sourceId" : "15",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring Service"
+        }, {
+          "description" : "Query composition for filtered task lists.",
+          "documentation" : { },
+          "id" : "16",
+          "name" : "FilterService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.filterSvc"
+          },
+          "relationships" : [ {
+            "destinationId" : "17",
+            "id" : "41",
+            "sourceId" : "16",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring Service"
+        }, {
+          "description" : "Spring Data JPA repositories for User and Task.",
+          "documentation" : { },
+          "id" : "17",
+          "name" : "Repository Layer",
+          "properties" : {
+            "structurizr.dsl.identifier" : "octotask.api.repo"
+          },
+          "relationships" : [ {
+            "description" : "Executes SQL",
+            "destinationId" : "18",
+            "id" : "43",
+            "sourceId" : "17",
+            "tags" : "Relationship",
+            "technology" : "JDBC"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Spring Data JPA"
+        } ],
+        "description" : "REST backend; orchestrates users, tasks and statistics.",
+        "documentation" : { },
+        "id" : "7",
+        "name" : "API Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "octotask.api"
+        },
+        "relationships" : [ {
+          "description" : "Reads from and writes to",
+          "destinationId" : "18",
+          "id" : "27",
+          "sourceId" : "7",
+          "tags" : "Relationship",
+          "technology" : "JDBC over mTLS (Oracle Wallet)"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "Spring Boot 3 / Java 17"
+      } ],
+      "description" : "Web-based SCRUM task manager with role-based access and analytics.",
+      "documentation" : { },
+      "group" : "Oracle MTDR Program",
+      "id" : "5",
+      "name" : "OctoTask",
+      "properties" : {
+        "structurizr.dsl.identifier" : "octotask"
+      },
+      "relationships" : [ {
+        "description" : "Reads from and writes to",
+        "destinationId" : "18",
+        "id" : "28",
+        "linkedRelationshipId" : "27",
+        "sourceId" : "5",
+        "technology" : "JDBC over mTLS (Oracle Wallet)"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Managed Oracle ADB (OLTP, Always-Free) used by OctoTask for persistence.",
+      "documentation" : { },
+      "id" : "18",
+      "name" : "Oracle Autonomous Database",
+      "properties" : {
+        "structurizr.dsl.identifier" : "adb"
+      },
+      "tags" : "Element,Software System,Database,External"
+    }, {
+      "description" : "Source control and PR review for OctoTask.",
+      "documentation" : { },
+      "id" : "19",
+      "name" : "GitHub",
+      "properties" : {
+        "structurizr.dsl.identifier" : "github"
+      },
+      "relationships" : [ {
+        "description" : "Triggers on push to main",
+        "destinationId" : "20",
+        "id" : "48",
+        "sourceId" : "19",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System,External"
+    }, {
+      "description" : "Builds the API JAR + Docker image, pushes to OCIR and rolls out a new pod revision on OKE.",
+      "documentation" : { },
+      "id" : "20",
+      "name" : "Build & Deploy Pipeline",
+      "properties" : {
+        "structurizr.dsl.identifier" : "pipeline"
+      },
+      "relationships" : [ {
+        "description" : "Pushes Docker image to",
+        "destinationId" : "21",
+        "id" : "49",
+        "sourceId" : "20",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System,External"
+    }, {
+      "description" : "Hosts the Docker images of the OctoTask API.",
+      "documentation" : { },
+      "id" : "21",
+      "name" : "OCI Container Registry",
+      "properties" : {
+        "structurizr.dsl.identifier" : "ocir"
+      },
+      "tags" : "Element,Software System,External"
+    } ]
+  },
+  "name" : "OctoTask",
+  "properties" : {
+    "structurizr.inspection.error" : "34",
+    "structurizr.dsl" : "d29ya3NwYWNlICJPY3RvVGFzayIgIlRhc2sgbWFuYWdlbWVudCBwbGF0Zm9ybSBmb3IgdGhlIE9yYWNsZSBNVERSIHByb2dyYW0uIiB7CgogICAgIWlkZW50aWZpZXJzIGhpZXJhcmNoaWNhbAoKICAgIG1vZGVsIHsKCiAgICAgICAgIyAtLS0tLS0tLS0tIFBlb3BsZSAtLS0tLS0tLS0tCiAgICAgICAgcG0gICAgID0gcGVyc29uICJQcm9qZWN0IE1hbmFnZXIiICAgIkNyZWF0ZXMgYW5kIGFzc2lnbnMgdGFza3M7IHJldmlld3MgdGVhbSBhbmFseXRpY3MuIgogICAgICAgIGRldiAgICA9IHBlcnNvbiAiRGV2ZWxvcGVyIiAgICAgICAgICJVcGRhdGVzIG93biB0YXNrIHN0YXR1czsgdmlld3MgcGVyc29uYWwgcGVyZm9ybWFuY2UuIgogICAgICAgIGRldm9wcyA9IHBlcnNvbiAiRGV2T3BzIEVuZ2luZWVyIiAgICJNYWludGFpbnMgdGhlIGJ1aWxkIHBpcGVsaW5lIGFuZCBPS0UgaW5mcmFzdHJ1Y3R1cmUuIiAiRXh0ZXJuYWwiCiAgICAgICAgY29hY2ggID0gcGVyc29uICJNVERSIENvYWNoIiAgICAgICAgIlJldmlld3Mgc3ByaW50IHByb2dyZXNzIGFuZCBjb2RlIG9uIGJlaGFsZiBvZiBPcmFjbGUuIiAiRXh0ZXJuYWwiCgogICAgICAgICMgLS0tLS0tLS0tLSBTb2Z0d2FyZSBzeXN0ZW1zIC0tLS0tLS0tLS0KICAgICAgICBncm91cCAiT3JhY2xlIE1URFIgUHJvZ3JhbSIgewoKICAgICAgICAgICAgb2N0b3Rhc2sgPSBzb2Z0d2FyZVN5c3RlbSAiT2N0b1Rhc2siICJXZWItYmFzZWQgU0NSVU0gdGFzayBtYW5hZ2VyIHdpdGggcm9sZS1iYXNlZCBhY2Nlc3MgYW5kIGFuYWx5dGljcy4iIHsKCiAgICAgICAgICAgICAgICBzcGEgPSBjb250YWluZXIgIldlYiBQb3J0YWwiICJTaW5nbGUtcGFnZSBVSTsgYnVuZGxlZCBpbnRvIHRoZSBBUEkgSkFSIGFuZCBzZXJ2ZWQgYXMgc3RhdGljIGFzc2V0cy4iICJSZWFjdCArIFZpdGUgKyBUeXBlU2NyaXB0IiAiV2ViQXBwIgoKICAgICAgICAgICAgICAgIGFwaSA9IGNvbnRhaW5lciAiQVBJIEFwcGxpY2F0aW9uIiAiUkVTVCBiYWNrZW5kOyBvcmNoZXN0cmF0ZXMgdXNlcnMsIHRhc2tzIGFuZCBzdGF0aXN0aWNzLiIgIlNwcmluZyBCb290IDMgLyBKYXZhIDE3IiB7CgogICAgICAgICAgICAgICAgICAgIHVzZXJDdGwgICAgPSBjb21wb25lbnQgIlVzZXJDb250cm9sbGVyIiAgICAgICAgIlVzZXIgQ1JVRCBhbmQgYXV0aGVudGljYXRpb24gZW5kcG9pbnRzLiIgICAgICAgICJTcHJpbmcgTVZDIgogICAgICAgICAgICAgICAgICAgIHRhc2tDdGwgICAgPSBjb21wb25lbnQgIlRhc2tDb250cm9sbGVyIiAgICAgICAgIlRhc2sgQ1JVRCwgYXNzaWdubWVudCBhbmQgc3RhdHVzIGVuZHBvaW50cy4iICAgICJTcHJpbmcgTVZDIgogICAgICAgICAgICAgICAgICAgIHN0YXRzQ3RsICAgPSBjb21wb25lbnQgIlN0YWRpc3RpY3NDb250cm9sbGVyIiAgIlRlYW0gYW5kIHBlci11c2VyIHN0YXRpc3RpY3MgZW5kcG9pbnRzLiIgICAgICAgICJTcHJpbmcgTVZDIgogICAgICAgICAgICAgICAgICAgIGZpbHRlckN0bCAgPSBjb21wb25lbnQgIkZpbHRlckNvbnRyb2xsZXIiICAgICAgIkVuZHBvaW50cyBmb3IgZmlsdGVyZWQgdGFzayBsaXN0cy4iICAgICAgICAgICAgICJTcHJpbmcgTVZDIgogICAgICAgICAgICAgICAgICAgIGRiQ3RsICAgICAgPSBjb21wb25lbnQgIkRhdGFiYXNlQ29udHJvbGxlciIgICAgIkRhdGFiYXNlIGxpdmVuZXNzL2hlYWx0aCBwcm9iZS4iICAgICAgICAgICAgICAgICJTcHJpbmcgTVZDIgoKICAgICAgICAgICAgICAgICAgICB1c2VyU3ZjICAgID0gY29tcG9uZW50ICJVc2VyU2VydmljZSIgICAgICAgICAgICJVc2VyIGxpZmVjeWNsZSBhbmQgY3JlZGVudGlhbCBjaGVja3MuIiAgICAgICAgICAiU3ByaW5nIFNlcnZpY2UiCiAgICAgICAgICAgICAgICAgICAgdGFza1N2YyAgICA9IGNvbXBvbmVudCAiVGFza1NlcnZpY2UiICAgICAgICAgICAiVGFzayBzdGF0ZSBtYWNoaW5lIGFuZCBhc3NpZ25tZW50IHJ1bGVzLiIgICAgICAgIlNwcmluZyBTZXJ2aWNlIgogICAgICAgICAgICAgICAgICAgIHN0YXRzU3ZjICAgPSBjb21wb25lbnQgIlN0YWRpc3RpY3NTZXJ2aWNlIiAgICAgIkFnZ3JlZ2F0ZXMgdGFza3MgcGVyIHRlYW0vdXNlciBmb3IgY2hhcnRzLiIgICAgICJTcHJpbmcgU2VydmljZSIKICAgICAgICAgICAgICAgICAgICBmaWx0ZXJTdmMgID0gY29tcG9uZW50ICJGaWx0ZXJTZXJ2aWNlIiAgICAgICAgICJRdWVyeSBjb21wb3NpdGlvbiBmb3IgZmlsdGVyZWQgdGFzayBsaXN0cy4iICAgICAiU3ByaW5nIFNlcnZpY2UiCgogICAgICAgICAgICAgICAgICAgIHJlcG8gICAgICAgPSBjb21wb25lbnQgIlJlcG9zaXRvcnkgTGF5ZXIiICAgICAgIlNwcmluZyBEYXRhIEpQQSByZXBvc2l0b3JpZXMgZm9yIFVzZXIgYW5kIFRhc2suIiAiU3ByaW5nIERhdGEgSlBBIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgfQoKICAgICAgICAjIEV4dGVybmFsIC8gc3VwcG9ydGluZyBzeXN0ZW1zCiAgICAgICAgYWRiICAgICAgPSBzb2Z0d2FyZVN5c3RlbSAiT3JhY2xlIEF1dG9ub21vdXMgRGF0YWJhc2UiICJNYW5hZ2VkIE9yYWNsZSBBREIgKE9MVFAsIEFsd2F5cy1GcmVlKSB1c2VkIGJ5IE9jdG9UYXNrIGZvciBwZXJzaXN0ZW5jZS4iICJEYXRhYmFzZSxFeHRlcm5hbCIKICAgICAgICBnaXRodWIgICA9IHNvZnR3YXJlU3lzdGVtICJHaXRIdWIiICAgICAgICAgICAgICAgICAgICAgIlNvdXJjZSBjb250cm9sIGFuZCBQUiByZXZpZXcgZm9yIE9jdG9UYXNrLiIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiRXh0ZXJuYWwiCiAgICAgICAgcGlwZWxpbmUgPSBzb2Z0d2FyZVN5c3RlbSAiQnVpbGQgJiBEZXBsb3kgUGlwZWxpbmUiICAgICJCdWlsZHMgdGhlIEFQSSBKQVIgKyBEb2NrZXIgaW1hZ2UsIHB1c2hlcyB0byBPQ0lSIGFuZCByb2xscyBvdXQgYSBuZXcgcG9kIHJldmlzaW9uIG9uIE9LRS4iICJFeHRlcm5hbCIKICAgICAgICBvY2lyICAgICA9IHNvZnR3YXJlU3lzdGVtICJPQ0kgQ29udGFpbmVyIFJlZ2lzdHJ5IiAgICAgIkhvc3RzIHRoZSBEb2NrZXIgaW1hZ2VzIG9mIHRoZSBPY3RvVGFzayBBUEkuIiAgICAgICAgICAgICAgICAgICAgICAgICAgICAiRXh0ZXJuYWwiCgogICAgICAgICMgLS0tLS0tLS0tLSBSdW50aW1lIHJlbGF0aW9uc2hpcHMgKHZpc2libGUgaW4gQ29udGV4dCAmIENvbnRhaW5lciB2aWV3cykgLS0tLS0tLS0tLQogICAgICAgIHBtICAtPiBvY3RvdGFzay5zcGEgIk1hbmFnZXMgdGFza3MgYW5kIHJldmlld3MgYW5hbHl0aWNzIGluIgogICAgICAgIGRldiAtPiBvY3RvdGFzay5zcGEgIlVwZGF0ZXMgdGFzayBzdGF0dXMgaW4iCgogICAgICAgIG9jdG90YXNrLnNwYSAtPiBvY3RvdGFzay5hcGkgIkNhbGxzIFJFU1QgZW5kcG9pbnRzIG9uIiAiSlNPTiAvIEhUVFBTIgogICAgICAgIG9jdG90YXNrLmFwaSAtPiBhZGIgICAgICAgICAgIlJlYWRzIGZyb20gYW5kIHdyaXRlcyB0byIgIkpEQkMgb3ZlciBtVExTIChPcmFjbGUgV2FsbGV0KSIKCiAgICAgICAgb2N0b3Rhc2suc3BhIC0+IG9jdG90YXNrLmFwaS51c2VyQ3RsICAgIkF1dGggKyB1c2VyIEFQSXMiICAgIkpTT04vSFRUUFMiCiAgICAgICAgb2N0b3Rhc2suc3BhIC0+IG9jdG90YXNrLmFwaS50YXNrQ3RsICAgIlRhc2sgQVBJcyIgICAgICAgICAgIkpTT04vSFRUUFMiCiAgICAgICAgb2N0b3Rhc2suc3BhIC0+IG9jdG90YXNrLmFwaS5zdGF0c0N0bCAgIlN0YXRpc3RpY3MgQVBJcyIgICAgIkpTT04vSFRUUFMiCiAgICAgICAgb2N0b3Rhc2suc3BhIC0+IG9jdG90YXNrLmFwaS5maWx0ZXJDdGwgIkZpbHRlciBBUElzIiAgICAgICAgIkpTT04vSFRUUFMiCiAgICAgICAgb2N0b3Rhc2suc3BhIC0+IG9jdG90YXNrLmFwaS5kYkN0bCAgICAgIkhlYWx0aCBwcm9iZSIgICAgICAgIkpTT04vSFRUUFMiCgogICAgICAgIG9jdG90YXNrLmFwaS51c2VyQ3RsICAgLT4gb2N0b3Rhc2suYXBpLnVzZXJTdmMKICAgICAgICBvY3RvdGFzay5hcGkudGFza0N0bCAgIC0+IG9jdG90YXNrLmFwaS50YXNrU3ZjCiAgICAgICAgb2N0b3Rhc2suYXBpLnN0YXRzQ3RsICAtPiBvY3RvdGFzay5hcGkuc3RhdHNTdmMKICAgICAgICBvY3RvdGFzay5hcGkuZmlsdGVyQ3RsIC0+IG9jdG90YXNrLmFwaS5maWx0ZXJTdmMKCiAgICAgICAgb2N0b3Rhc2suYXBpLnVzZXJTdmMgICAtPiBvY3RvdGFzay5hcGkucmVwbwogICAgICAgIG9jdG90YXNrLmFwaS50YXNrU3ZjICAgLT4gb2N0b3Rhc2suYXBpLnJlcG8KICAgICAgICBvY3RvdGFzay5hcGkuc3RhdHNTdmMgIC0+IG9jdG90YXNrLmFwaS5yZXBvCiAgICAgICAgb2N0b3Rhc2suYXBpLmZpbHRlclN2YyAtPiBvY3RvdGFzay5hcGkucmVwbwogICAgICAgIG9jdG90YXNrLmFwaS5kYkN0bCAgICAgLT4gb2N0b3Rhc2suYXBpLnJlcG8gIlBpbmdzIgoKICAgICAgICBvY3RvdGFzay5hcGkucmVwbyAtPiBhZGIgIkV4ZWN1dGVzIFNRTCIgIkpEQkMiCgogICAgICAgICMgLS0tLS0tLS0tLSBQcm9ncmFtLWxldmVsIHJlbGF0aW9uc2hpcHMgKHZpc2libGUgaW4gTGFuZHNjYXBlIG9ubHkpIC0tLS0tLS0tLS0KICAgICAgICAjIE5vbmUgb2YgdGhlc2UgdG91Y2ggT2N0b1Rhc2sgYXQgcnVudGltZSwgc28gdGhleSBkb24ndCBhcHBlYXIgaW4gdGhlIENvbnRleHQgdmlldy4KICAgICAgICBkZXYgICAgICAtPiBnaXRodWIgICAiUHVzaGVzIGNvZGUgdG8iCiAgICAgICAgZGV2b3BzICAgLT4gZ2l0aHViICAgIlJldmlld3MgUFJzIGluIgogICAgICAgIGRldm9wcyAgIC0+IHBpcGVsaW5lICJPcGVyYXRlcyIKICAgICAgICBjb2FjaCAgICAtPiBnaXRodWIgICAiUmV2aWV3cyBzcHJpbnQgcHJvZ3Jlc3MgdmlhIgogICAgICAgIGdpdGh1YiAgIC0+IHBpcGVsaW5lICJUcmlnZ2VycyBvbiBwdXNoIHRvIG1haW4iCiAgICAgICAgcGlwZWxpbmUgLT4gb2NpciAgICAgIlB1c2hlcyBEb2NrZXIgaW1hZ2UgdG8iCgogICAgICAgICMgLS0tLS0tLS0tLSBEZXBsb3ltZW50OiBPcmFjbGUgQ2xvdWQgSW5mcmFzdHJ1Y3R1cmUgLS0tLS0tLS0tLQogICAgICAgICMgU2NvcGUgPSAiaW5mcmFzdHJ1Y3R1cmUgd2Ugb3duIiAodGhlIFNQQeKGkkFQSSBmbG93IGlzIHNob3duIGluIHRoZSBDb250YWluZXIgdmlldykuCiAgICAgICAgZGVwbG95bWVudEVudmlyb25tZW50ICJQcm9kdWN0aW9uIiB7CiAgICAgICAgICAgIHJlZ2lvbiA9IGRlcGxveW1lbnROb2RlICJPQ0kgUmVnaW9uIOKAlCBteC1xdWVyZXRhcm8tMSIgIiIgIk9DSSIgewoKICAgICAgICAgICAgICAgIGxiID0gaW5mcmFzdHJ1Y3R1cmVOb2RlICJQdWJsaWMgTG9hZCBCYWxhbmNlciIgIiIgIk9DSSBMQiIKCiAgICAgICAgICAgICAgICBwb2QgPSBkZXBsb3ltZW50Tm9kZSAiT0tFIFBvZCAob2N0b3Rhc2stYXBpKSIgIkt1YmVybmV0ZXMgMS4zNS4yIMK3IDIgcmVwbGljYXMgwrcgOjgwODAiICIiICIiIDIgewogICAgICAgICAgICAgICAgICAgIGFwaUluc3RhbmNlID0gY29udGFpbmVySW5zdGFuY2Ugb2N0b3Rhc2suYXBpCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgYWRiTm9kZSA9IGRlcGxveW1lbnROb2RlICJBdXRvbm9tb3VzIERhdGFiYXNlIiAiIiAiT3JhY2xlIEFEQiIgewogICAgICAgICAgICAgICAgICAgIGFkYkluc3RhbmNlID0gc29mdHdhcmVTeXN0ZW1JbnN0YW5jZSBhZGIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgIyBhcGnihpJhZGIgaXMgaW5oZXJpdGVkIGZyb20gdGhlIHN0YXRpYyBtb2RlbC4KICAgICAgICAgICAgcmVnaW9uLmxiIC0+IHJlZ2lvbi5wb2QuYXBpSW5zdGFuY2UgIkZvcndhcmRzIHRvIiAiSFRUUCAvIDgwODAiCiAgICAgICAgfQogICAgfQoKICAgIHZpZXdzIHsKCiAgICAgICAgIyAtLS0tLS0tLS0tIDEuIFN5c3RlbSBMYW5kc2NhcGUgKExldmVsIDApIC0tLS0tLS0tLS0KICAgICAgICAjIFdob2xlIE1URFIgcHJvZ3JhbTogdXNlcnMsIE9jdG9UYXNrLCB0aGUgbWFuYWdlZCBEQiBpdCBjb25zdW1lcywgYW5kIHRoZQogICAgICAgICMgZGVsaXZlcnkgdG9vbGNoYWluIChHaXRIdWIg4oaSIENJL0NEIOKGkiBPQ0lSKSBwbHVzIHRoZSBwZW9wbGUgd2hvIG9wZXJhdGUgaXQuCiAgICAgICAgc3lzdGVtTGFuZHNjYXBlICJMYW5kc2NhcGUiICJPY3RvVGFzayB3aXRoaW4gdGhlIE9yYWNsZSBNVERSIHByb2dyYW0gKHJ1bnRpbWUgdXNlcnMgKyBkZWxpdmVyeSB0b29sY2hhaW4pLiIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dAogICAgICAgIH0KCiAgICAgICAgIyAtLS0tLS0tLS0tIDIuIFN5c3RlbSBDb250ZXh0IChMZXZlbCAxKSAtLS0tLS0tLS0tCiAgICAgICAgIyBPbmx5IHdoYXQgT2N0b1Rhc2sgaW50ZXJhY3RzIHdpdGggYXQgcnVudGltZTogdGhlIHR3byBlbmQtdXNlciByb2xlcyBhbmQKICAgICAgICAjIHRoZSBleHRlcm5hbCBPcmFjbGUgQXV0b25vbW91cyBEYXRhYmFzZSBpdCBwZXJzaXN0cyBkYXRhIHRvLgogICAgICAgIHN5c3RlbUNvbnRleHQgb2N0b3Rhc2sgIkNvbnRleHQiICJPY3RvVGFzayBhbmQgaXRzIGRpcmVjdCBydW50aW1lIGRlcGVuZGVuY2llcy4iIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgICMgLS0tLS0tLS0tLSAzLiBDb250YWluZXJzIChMZXZlbCAyKSAtLS0tLS0tLS0tCiAgICAgICAgY29udGFpbmVyIG9jdG90YXNrICJDb250YWluZXJzIiAiSGlnaC1sZXZlbCB0ZWNobm9sb2d5IGJsb2NrcyBvZiBPY3RvVGFzay4iIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgICMgLS0tLS0tLS0tLSA0LiBDb21wb25lbnRzIChMZXZlbCAzKSAtLS0tLS0tLS0tCiAgICAgICAgY29tcG9uZW50IG9jdG90YXNrLmFwaSAiQ29tcG9uZW50cyIgIlNwcmluZyBCb290IEFQSTogY29udHJvbGxlcnMsIHNlcnZpY2VzIGFuZCBwZXJzaXN0ZW5jZS4iIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQKICAgICAgICB9CgogICAgICAgICMgLS0tLS0tLS0tLSA1LiBEZXBsb3ltZW50IC0tLS0tLS0tLS0KICAgICAgICBkZXBsb3ltZW50IG9jdG90YXNrICJQcm9kdWN0aW9uIiAiUHJvZHVjdGlvbkRlcGxveW1lbnQiICJSdW50aW1lIHRvcG9sb2d5IG9uIE9DSTogcHVibGljIExvYWQgQmFsYW5jZXIgZnJvbnRzIGEgMi1yZXBsaWNhIE9LRSBwb2QgYmFja2VkIGJ5IEF1dG9ub21vdXMgRGF0YWJhc2UuIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvTGF5b3V0CiAgICAgICAgfQoKICAgICAgICAjIC0tLS0tLS0tLS0gNmEuIER5bmFtaWMg4oCUIENyZWF0ZSAmIEFzc2lnbiBUYXNrIC0tLS0tLS0tLS0KICAgICAgICBkeW5hbWljIG9jdG90YXNrLmFwaSAiQ3JlYXRlQW5kQXNzaWduVGFzayIgIlByb2Nlc3M6IGEgUHJvamVjdCBNYW5hZ2VyIGNyZWF0ZXMgYSB0YXNrIGluIHRoZSBiYWNrbG9nIGFuZCBhc3NpZ25zIGl0IHRvIGEgRGV2ZWxvcGVyLiBFYWNoIG51bWJlcmVkIHN0ZXAgZmxvd3MgQ29udHJvbGxlciDihpIgU2VydmljZSDihpIgUmVwb3NpdG9yeSDihpIgRGF0YWJhc2UuIiB7CiAgICAgICAgICAgIHBtICAgICAgICAgICAgICAgICAgIC0+IG9jdG90YXNrLnNwYSAgICAgICAgICIxLiBGaWxscyB0aGUgTmV3IFRhc2sgZm9ybSAodGl0bGUsIGRlc2NyaXB0aW9uLCBhc3NpZ25lZSwgZHVlIGRhdGUpIgogICAgICAgICAgICBvY3RvdGFzay5zcGEgICAgICAgICAtPiBvY3RvdGFzay5hcGkudGFza0N0bCAiMi4gUE9TVCAvYXBpL3Rhc2tzIgogICAgICAgICAgICBvY3RvdGFzay5hcGkudGFza0N0bCAtPiBvY3RvdGFzay5hcGkudGFza1N2YyAiMy4gVmFsaWRhdGVzIHBheWxvYWQgYW5kIGFwcGxpZXMgYXNzaWdubWVudCBydWxlcyIKICAgICAgICAgICAgb2N0b3Rhc2suYXBpLnRhc2tTdmMgLT4gb2N0b3Rhc2suYXBpLnJlcG8gICAgIjQuIHNhdmUoVGFzaykiCiAgICAgICAgICAgIG9jdG90YXNrLmFwaS5yZXBvICAgIC0+IGFkYiAgICAgICAgICAgICAgICAgICI1LiBJTlNFUlQgSU5UTyBUQVNLUyIKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgIyAtLS0tLS0tLS0tIDZiLiBEeW5hbWljIOKAlCBWaWV3IFNwcmludCBTdGF0aXN0aWNzIC0tLS0tLS0tLS0KICAgICAgICBkeW5hbWljIG9jdG90YXNrLmFwaSAiVmlld1NwcmludFN0YXRpc3RpY3MiICJQcm9jZXNzOiBhIFByb2plY3QgTWFuYWdlciBvcGVucyB0aGUgc3ByaW50IGRhc2hib2FyZC4gVGVhbSBwcm9ncmVzcyBpcyBhZ2dyZWdhdGVkIGxpdmUgZnJvbSB0aGUgZGF0YWJhc2UgYW5kIHJlbmRlcmVkIGluIHRoZSBTUEEuIiB7CiAgICAgICAgICAgIHBtICAgICAgICAgICAgICAgICAgICAtPiBvY3RvdGFzay5zcGEgICAgICAgICAgIjEuIE9wZW5zIHRoZSBBbmFseXRpY3MgcGFnZSIKICAgICAgICAgICAgb2N0b3Rhc2suc3BhICAgICAgICAgIC0+IG9jdG90YXNrLmFwaS5zdGF0c0N0bCAiMi4gR0VUIC9hcGkvc3RhdGlzdGljcy90ZWFtP3NwcmludD1OIgogICAgICAgICAgICBvY3RvdGFzay5hcGkuc3RhdHNDdGwgLT4gb2N0b3Rhc2suYXBpLnN0YXRzU3ZjICIzLiBBc2tzIGZvciB0aGUgdGVhbSBwcm9ncmVzcyBmb3Igc3ByaW50IE4iCiAgICAgICAgICAgIG9jdG90YXNrLmFwaS5zdGF0c1N2YyAtPiBvY3RvdGFzay5hcGkucmVwbyAgICAgIjQuIFF1ZXJpZXMgdGFza3MgZ3JvdXBlZCBieSBzdGF0dXMgJiBhc3NpZ25lZSIKICAgICAgICAgICAgb2N0b3Rhc2suYXBpLnJlcG8gICAgIC0+IGFkYiAgICAgICAgICAgICAgICAgICAiNS4gU0VMRUNUIOKApiBHUk9VUCBCWSBzdGF0dXMsIHVzZXJfaWQiCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgICMgLS0tLS0tLS0tLSBTdHlsaW5nIC0tLS0tLS0tLS0KICAgICAgICBzdHlsZXMgewogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIHNoYXBlIHBlcnNvbgogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDg0MjdiCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzQzOGRkNQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjODViYmYwCiAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDAwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiV2ViQXBwIiB7CiAgICAgICAgICAgICAgICBzaGFwZSB3ZWJCcm93c2VyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXh0ZXJuYWwiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkluZnJhc3RydWN0dXJlIE5vZGUiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2ZmZmZmZgogICAgICAgICAgICAgICAgY29sb3IgIzU1NTU1NQogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQp9",
+    "structurizr.inspection.info" : "0",
+    "structurizr.inspection.ignore" : "0",
+    "structurizr.inspection.warning" : "0"
+  },
+  "views" : {
+    "componentViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "7",
+      "description" : "Spring Boot API: controllers, services and persistence.",
+      "elements" : [ {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "12",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "14",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "17",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Components",
+      "name" : "Component View: OctoTask - API Application",
+      "order" : 4,
+      "relationships" : [ {
+        "id" : "29"
+      }, {
+        "id" : "30"
+      }, {
+        "id" : "31"
+      }, {
+        "id" : "32"
+      }, {
+        "id" : "33"
+      }, {
+        "id" : "34"
+      }, {
+        "id" : "35"
+      }, {
+        "id" : "36"
+      }, {
+        "id" : "37"
+      }, {
+        "id" : "38"
+      }, {
+        "id" : "39"
+      }, {
+        "id" : "40"
+      }, {
+        "id" : "41"
+      }, {
+        "id" : "42"
+      }, {
+        "id" : "43"
+      } ]
+    } ],
+    "configuration" : {
+      "styles" : {
+        "elements" : [ {
+          "background" : "#85bbf0",
+          "color" : "#000000",
+          "tag" : "Component"
+        }, {
+          "background" : "#438dd5",
+          "color" : "#ffffff",
+          "tag" : "Container"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        }, {
+          "background" : "#999999",
+          "color" : "#ffffff",
+          "tag" : "External"
+        }, {
+          "background" : "#ffffff",
+          "color" : "#555555",
+          "tag" : "Infrastructure Node"
+        }, {
+          "background" : "#08427b",
+          "color" : "#ffffff",
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#1168bd",
+          "color" : "#ffffff",
+          "tag" : "Software System"
+        }, {
+          "shape" : "WebBrowser",
+          "tag" : "WebApp"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "High-level technology blocks of OctoTask.",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "7",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "Containers",
+      "name" : "Container View: OctoTask",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "22"
+      }, {
+        "id" : "24"
+      }, {
+        "id" : "26"
+      }, {
+        "id" : "27"
+      } ],
+      "softwareSystemId" : "5"
+    } ],
+    "deploymentViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Runtime topology on OCI: public Load Balancer fronts a 2-replica OKE pod backed by Autonomous Database.",
+      "elements" : [ {
+        "id" : "50",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "51",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "52",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "53",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "54",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "55",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "environment" : "Production",
+      "key" : "ProductionDeployment",
+      "name" : "Deployment View: OctoTask - Production",
+      "order" : 5,
+      "relationships" : [ {
+        "id" : "56"
+      }, {
+        "id" : "57"
+      } ],
+      "softwareSystemId" : "5"
+    } ],
+    "dynamicViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Process: a Project Manager creates a task in the backlog and assigns it to a Developer. Each numbered step flows Controller → Service → Repository → Database.",
+      "elementId" : "7",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "14",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "17",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalBoundariesVisible" : false,
+      "key" : "CreateAndAssignTask",
+      "name" : "Dynamic View: OctoTask - API Application",
+      "order" : 6,
+      "relationships" : [ {
+        "description" : "1. Fills the New Task form (title, description, assignee, due date)",
+        "id" : "22",
+        "order" : "1",
+        "response" : false
+      }, {
+        "description" : "2. POST /api/tasks",
+        "id" : "30",
+        "order" : "2",
+        "response" : false
+      }, {
+        "description" : "3. Validates payload and applies assignment rules",
+        "id" : "35",
+        "order" : "3",
+        "response" : false
+      }, {
+        "description" : "4. save(Task)",
+        "id" : "39",
+        "order" : "4",
+        "response" : false
+      }, {
+        "description" : "5. INSERT INTO TASKS",
+        "id" : "43",
+        "order" : "5",
+        "response" : false
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Process: a Project Manager opens the sprint dashboard. Team progress is aggregated live from the database and rendered in the SPA.",
+      "elementId" : "7",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "17",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalBoundariesVisible" : false,
+      "key" : "ViewSprintStatistics",
+      "name" : "Dynamic View: OctoTask - API Application",
+      "order" : 7,
+      "relationships" : [ {
+        "description" : "1. Opens the Analytics page",
+        "id" : "22",
+        "order" : "1",
+        "response" : false
+      }, {
+        "description" : "2. GET /api/statistics/team?sprint=N",
+        "id" : "31",
+        "order" : "2",
+        "response" : false
+      }, {
+        "description" : "3. Asks for the team progress for sprint N",
+        "id" : "36",
+        "order" : "3",
+        "response" : false
+      }, {
+        "description" : "4. Queries tasks grouped by status & assignee",
+        "id" : "40",
+        "order" : "4",
+        "response" : false
+      }, {
+        "description" : "5. SELECT … GROUP BY status, user_id",
+        "id" : "43",
+        "order" : "5",
+        "response" : false
+      } ]
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "OctoTask and its direct runtime dependencies.",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "Context",
+      "name" : "System Context View: OctoTask",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "23"
+      }, {
+        "id" : "25"
+      }, {
+        "id" : "28"
+      } ],
+      "softwareSystemId" : "5"
+    } ],
+    "systemLandscapeViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "OctoTask within the Oracle MTDR program (runtime users + delivery toolchain).",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "20",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "Landscape",
+      "name" : "System Landscape View",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "23"
+      }, {
+        "id" : "25"
+      }, {
+        "id" : "28"
+      }, {
+        "id" : "44"
+      }, {
+        "id" : "45"
+      }, {
+        "id" : "46"
+      }, {
+        "id" : "47"
+      }, {
+        "id" : "48"
+      }, {
+        "id" : "49"
+      } ]
+    } ]
+  }
+}

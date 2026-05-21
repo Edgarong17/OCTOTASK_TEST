@@ -1,0 +1,37 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+shell: bash
+
+env:
+  variables:
+    # Nombre que tendrá tu aplicación en el registro
+    APP_NAME: "todolist-springboot"
+  exportedVariables:
+    - IMAGE_TAG
+
+steps:
+  - type: Command
+    name: "Generar Tag Único"
+    command: |
+      # Extraemos los primeros 7 caracteres del ID de OCI para usarlo como versión
+      export IMAGE_TAG=${OCI_BUILD_RUN_ID:0:7}
+      echo "El tag asignado para esta compilación es: $IMAGE_TAG"
+
+  - type: Command
+    name: "Construir Imagen Docker Completa"
+    command: |
+      echo "Entrando al directorio del backend..."
+      cd backend
+      
+      echo "Validando archivos antes de compilar..."
+      ls -la
+      
+      echo "Iniciando Docker Build (Compilación de React + empaquetado Spring Boot)..."
+      docker build -t ${APP_NAME}:${IMAGE_TAG} .
+      echo "Imagen Docker construida exitosamente."
+
+outputArtifacts:
+  - name: todolist_image_artifact
+    type: DOCKER_IMAGE
+    location: ${APP_NAME}:${IMAGE_TAG}

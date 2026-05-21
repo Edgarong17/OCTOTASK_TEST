@@ -1,0 +1,105 @@
+.card-container {
+    background-color: #FDF4E3;
+    border-radius: 25px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #000;
+    border: 3px solid #ffffff;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.card-expand-icon {
+    font-size: 1.2em;
+}
+
+.card-information {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.card-container-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-container-info-text {
+    font-size: 0.9 em;
+    color: #555;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.card-info-pill {
+    font-size: 1em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.priority-medium {
+    background-color: #D9A648;
+    color: #fff;
+    min-width: 40%;
+}
+
+.priority-high {
+    background-color: #D9534F;
+    color: #fff;
+    min-width: 40%;
+}
+
+.priority-low {
+    background-color: #5BC0DE;
+    color: #fff;
+    min-width: 40%;
+}
+
+.cost-pill {
+    background-color: #8B9ED9;
+    color: #fff;
+}
+
+.date-pill {
+    background-color: #000;
+    color: #fff;
+}
+
+.card-overdue {
+    margin-bottom: 12px;
+}
+
+.card-overdue-text {
+    font-size: 0.9em;
+    color: #000;
+}
+
+.card-person {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.card-person-text {
+    margin-left: 8px;
+    font-size: 1em;
+    font-weight: bold;
+}

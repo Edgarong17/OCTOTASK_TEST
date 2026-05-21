@@ -1,0 +1,33 @@
+# syntax=docker/dockerfile:1.7
+
+FROM eclipse-temurin:17-jdk-jammy AS builder
+
+WORKDIR /workspace
+
+COPY .mvn/ .mvn/
+COPY mvnw pom.xml ./
+
+RUN sed -i 's/\r$//' mvnw
+
+RUN chmod +x mvnw
+
+COPY src/ src/
+
+RUN ./mvnw -B -DskipTests clean package spring-boot:repackage
+
+
+FROM eclipse-temurin:17-jre-jammy
+
+WORKDIR /app
+
+RUN useradd --system --uid 10001 appuser \
+    && mkdir -p /mtdrworkshop/creds \
+    && chown -R appuser /app /mtdrworkshop
+
+COPY --from=builder /workspace/target/MyTodoList-0.0.1-SNAPSHOT.jar /app/MyTodoList.jar
+
+USER appuser
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/app/MyTodoList.jar"]

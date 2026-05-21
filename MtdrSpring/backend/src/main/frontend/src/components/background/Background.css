@@ -1,0 +1,62 @@
+.background-wrapper {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	width: 100vw;
+	min-height: 100vh;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.background-layer {
+	position: fixed;
+	inset: 0;
+	background: linear-gradient(180deg, #0A0A0A 0%, #1B0C33 100%);
+	overflow: hidden;
+}
+
+.background-layer-authenticated {
+	position: fixed;
+	inset: 0;
+	background: linear-gradient(180deg, #0A0A0A 0%, #4C2F7E 100%);
+	overflow: hidden;
+}
+
+.background-layer::before {
+	content: '';
+	position: absolute;
+	inset: -8%;
+	background-image: url('../../assets/backgroundPattern.webp');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: -68px -142px;
+	opacity: 0.4;
+	transform: rotate(-3.2deg) scale(1.05);
+	transform-origin: center;
+	animation: bgFloat 12s ease-in-out infinite alternate;
+}
+
+.background-content {
+	position: relative;
+	z-index: 10;
+	width: 100%;
+	min-height: 100vh;
+}
+
+@keyframes bgFloat {
+	0% {
+		background-position: -68px -142px;
+		opacity: 0.34;
+		transform: rotate(-3.2deg) scale(1.05);
+	}
+	50% {
+		background-position: -46px -116px;
+		opacity: 0.42;
+		transform: rotate(-1.7deg) scale(1.05);
+	}
+	100% {
+		background-position: -22px -92px;
+		opacity: 0.48;
+		transform: rotate(0.2deg) scale(1.05);
+	}
+}

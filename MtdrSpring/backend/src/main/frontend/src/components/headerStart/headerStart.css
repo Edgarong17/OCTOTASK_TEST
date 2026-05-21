@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.header-start {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background-color: #2A2A2A;
+    outline: 1px solid #FFFFFF;
+    height: 5vh;
+    max-height: 5vh;
+    min-height: 5vh;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    padding-left: 25px;
+    padding-right: 25px;
+
+}
+
+.header-start h1 {
+    margin: 0;
+}
+
+.logoSymbol
+{
+    background-image: url('../../assets/logoSymbol.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    height: 100%;
+    width: 5vh;
+    max-height: 100%;
+    flex: 0 0 auto;
+}
+
+.headerText
+{
+    color: #FFFFFF;
+    letter-spacing: 0.12em;
+    margin-left: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+
+    font-size: 25px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.headerTextOcto
+{
+    font-weight: 600;
+}
+
+.headerButton
+{
+    border-radius: 2em;
+    border: 1px solid transparent;
+    background:
+        linear-gradient(100deg, #7B5CFF 0%, #5A3DDB 100%) padding-box,
+        linear-gradient(#FFFFFF, #FFFFFF) border-box;
+
+    color: #FFFFFF;
+    letter-spacing: 0.08em;
+
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+    font-family: 'Poppins', sans-serif;
+    
+    padding-left: 2%;
+    padding-right: 2%;
+    
+    height: 60%;
+}
+
+.headerButton:hover
+{
+  background:
+        linear-gradient(100deg, #3e2a99 0%, #533faf 100%) padding-box,
+        linear-gradient(#FFFFFF, #FFFFFF) border-box;
+}

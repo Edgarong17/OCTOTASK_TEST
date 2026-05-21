@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+.registerViewContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerContainer {
+    width: 100%;
+    max-width: 450px;
+    margin: 70px auto; 
+    padding: 10px 50px;
+    background-color: #2b2b2b;
+    border-radius: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    height: 63%;
+
+    max-height: 100%;
+
+    font-family: 'Poppins', sans-serif;
+    outline: 3px solid #fff;
+}
+
+.pageTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffff;
+    text-align: center;
+}
+
+.registerButton {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 30px;
+    background-color: #7B5CFF;
+    border: 1px solid transparent;
+    background:
+        linear-gradient(100deg, #7B5CFF 0%, #5A3DDB 100%) padding-box,
+        linear-gradient(#FFFFFF, #FFFFFF) border-box;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.registerButton:hover {
+    background-color:  linear-gradient(100deg, #3e2a99 0%, #533faf 100%) padding-box,
+          linear-gradient(#FFFFFF, #FFFFFF) border-box;
+}
+
+.registerButton:active {
+    background-color: #5A3DDB;
+}
+
+.inputGroup {
+    margin-bottom: 15px;
+}
+
+.registerLabel {
+    margin-bottom: 2px;
+    font-weight: 600;
+    color: #e0e0e0;
+    text-align: left;
+    font-size: 15px;
+}
+
+.registerInput, .registerInput[type="text"] {
+    width: 100%;
+    padding: 6px 14px;
+    border: 1px solid #444;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #444;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+select.registerInput:invalid {
+    color: #444 ;
+}
+
+select.registerInput option {
+    color: #000;
+}
+
+.registerInput:focus {
+    border-color: #7B5CFF;
+}
+
+.errorText {
+    color: #ff6b6b;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.underlinedText {
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+    cursor: pointer;
+    text-decoration: underline;
+    display: block; 
+    width: 100%;
+}

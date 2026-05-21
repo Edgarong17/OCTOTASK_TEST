@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mytodo-app
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: mytodo-app
+
+  template:
+    metadata:
+      labels:
+        app: mytodo-app
+
+    spec:
+      imagePullSecrets:
+      - name: ocirsecret
+
+      containers:
+      - name: mytodo-app
+
+        image: mx-queretaro-1.ocir.io/axyjwyhvlyvr/mytodo:latest
+
+        ports:
+        - containerPort: 8080
+
+        env:
+        - name: DRIVER_CLASS_NAME
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DRIVER_CLASS_NAME
+
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_USER
+
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_PASSWORD
+
+        - name: DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_URL
+
+        - name: TELEGRAM_BOT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: TELEGRAM_BOT_TOKEN
+
+        - name: GEMINI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: GEMINI_API_KEY
+
+        - name: TNS_ADMIN
+          value: /mtdrworkshop/creds
+
+        volumeMounts:
+        - name: wallet-volume
+          mountPath: /mtdrworkshop/creds
+
+      volumes:
+      - name: wallet-volume
+        secret:
+          secretName: oracle-wallet
