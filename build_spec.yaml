@@ -7,8 +7,11 @@ env:
   variables:
     APP_NAME: "Octotask"
     REGION: "mx-queretaro-1"
-    TENANCY: "axyjwyhvlyvr"
     REPO: "mytodo"
+  vaultVariables:
+    OCI_USERNAME: ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa36kllm7zqbnyygobofzpkfbsqmsvdeom5rlqi5uqh2fa
+    OCI_NAMESPACE: ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa2anc7lzvhtj67agd3qznjmsdkhjwvumh3tg5bokivupq
+    OCI_AUTH_TOKEN: ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqampe7bzmli2p5a4meoxyl2bhk2ivzbkxb3af627dozaqq
   exportedVariables:
     - IMAGE_TAG
 
@@ -21,23 +24,11 @@ steps:
       echo "Tag generado: $IMAGE_TAG"
 
   - type: Command
-    name: "Obtener token desde Vault"
-    command: |
-      echo "Obteniendo token desde Vault..."
-      
-      OCIR_AUTH_TOKEN=$(oci secrets secret-bundle get \
-        --secret-id ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqampe7bzmli2p5a4meoxyl2bhk2ivzbkxb3af627dozaqq \
-        --query "data.\"secret-bundle-content\".content" \
-        --raw-output | base64 --decode)
-      
-      echo "Token obtenido correctamente"
-
-  - type: Command
     name: "Login a OCIR"
     command: |
-      echo "${OCI_AUTH_TOKEN}" | docker login mx-queretaro-1.ocir.io \
-      -u "${OCI_NAMESPACE}/${OCI_USERNAME}" \
-      --password-stdin
+      echo "${OCI_AUTH_TOKEN}" | docker login ${REGION}.ocir.io \
+        -u "${OCI_NAMESPACE}/${OCI_USERNAME}" \
+        --password-stdin
 
   - type: Command
     name: "Build Docker Image"
@@ -49,11 +40,11 @@ steps:
     name: "Tag & Push"
     command: |
       docker tag ${APP_NAME}:${IMAGE_TAG} \
-      ${REGION}.ocir.io/${TENANCY}/${REPO}:${IMAGE_TAG}
+        ${REGION}.ocir.io/${OCI_NAMESPACE}/${REPO}:${IMAGE_TAG}
 
-      docker push ${REGION}.ocir.io/${TENANCY}/${REPO}:${IMAGE_TAG}
+      docker push ${REGION}.ocir.io/${OCI_NAMESPACE}/${REPO}:${IMAGE_TAG}
 
 outputArtifacts:
   - name: todolist_image_artifact
     type: DOCKER_IMAGE
-    location: ${REGION}.ocir.io/${TENANCY}/${REPO}:${IMAGE_TAG}
+    location: ${REGION}.ocir.io/${OCI_NAMESPACE}/${REPO}:${IMAGE_TAG}
