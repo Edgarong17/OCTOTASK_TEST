@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:1.7
 
-FROM eclipse-temurin:17-jdk-jammy AS builder
+FROM container-registry.oracle.com/openjdk/openjdk:17 AS builder
+#FROM eclipse-temurin:17-jdk-jammy AS builder # Usar si el limit rate de Oracle no es un porblema
 
 WORKDIR /workspace
 
