@@ -33,7 +33,7 @@ steps:
   - type: Command
     name: "Build Docker Image"
     command: |
-      cd backend
+      cd MtdrSpring/backend
       docker build -t ${APP_NAME}:${IMAGE_TAG} .
 
   - type: Command
