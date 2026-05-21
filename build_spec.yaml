@@ -20,7 +20,7 @@ steps:
     name: "Generar Tag"
     command: |
       set -e
-      export IMAGE_TAG=${OCI_BUILD_RUN_ID:0:7}
+      export IMAGE_TAG=$(date +%s)
       echo "Tag generado: $IMAGE_TAG"
 
   - type: Command
