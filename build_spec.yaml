@@ -12,10 +12,17 @@ env:
     OCI_USERNAME: ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa36kllm7zqbnyygobofzpkfbsqmsvdeom5rlqi5uqh2fa
     OCI_NAMESPACE: ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa2anc7lzvhtj67agd3qznjmsdkhjwvumh3tg5bokivupq
     OCI_AUTH_TOKEN: ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqampe7bzmli2p5a4meoxyl2bhk2ivzbkxb3af627dozaqq
+    DOCKER_HUB_TOKEN: ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqahslvasz33o5lopjf5yjrsqvxmhkddevzjdkst4njlqgq
+    DOCKER_HUB_USER: ocid1.vaultsecret.oc1.mx-queretaro-1.amaaaaaase7jhxqa6rwbcoilymgliccj3mcbfcu6uyczbkx74ibw5ypqwknq
   exportedVariables:
     - IMAGE_TAG
 
 steps:
+  - type: Command
+    name: "Docker Login"
+    command: |
+      echo "${DOCKER_HUB_TOKEN}" | docker login --username "${DOCKER_HUB_USER}" --password-stdin
+      
   - type: Command
     name: "Generar Tag"
     command: |
